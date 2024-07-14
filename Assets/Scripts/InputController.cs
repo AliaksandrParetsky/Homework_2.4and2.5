@@ -23,7 +23,7 @@ public class InputController : MonoBehaviour, GameInput.IGamePlayActions
 
             gameInput.GamePlay.SetCallbacks(this);
 
-            RegdollComponent.DisableMovementEvent += DisableCharacterMovement;
+            CinemasineCam.DisableMovementEvent += DisableCharacterMovement;
         }
     }
 
@@ -35,7 +35,7 @@ public class InputController : MonoBehaviour, GameInput.IGamePlayActions
 
             gameInput.GamePlay.RemoveCallbacks(this);
 
-            RegdollComponent.DisableMovementEvent -= DisableCharacterMovement;
+            CinemasineCam.DisableMovementEvent -= DisableCharacterMovement;
         }
     }
 
@@ -52,8 +52,15 @@ public class InputController : MonoBehaviour, GameInput.IGamePlayActions
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void DisableCharacterMovement()
+    public void DisableCharacterMovement(bool dis)
     {
-        gameInput.Disable();
+        if (dis)
+        {
+            gameInput.Disable();
+        }
+        else
+        {
+            gameInput.Enable();
+        }
     }
 }

@@ -8,8 +8,7 @@ public class RegdollComponent : MonoBehaviour
     [SerializeField] Animator m_Animator;
     [SerializeField] List<Rigidbody> elements;
     [SerializeField] PlayerMovement playerMovement;
-
-    public static event Action DisableMovementEvent;
+    [SerializeField] CinemasineCam cum;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,7 +24,7 @@ public class RegdollComponent : MonoBehaviour
                 element.isKinematic = false;
             }
 
-            DisableMovementEvent?.Invoke();
+            cum.SetCamDeath();
         }
     }
 }
